@@ -1,4 +1,4 @@
-name: Initialize and deploy Athenaeum
+name: Build and deploy Athenaeum
 on:
   push:
     branches: [main]
@@ -6,7 +6,7 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: false
@@ -16,27 +16,6 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - name: Import prepared website source
-        if: hashFiles('athenaeum-native-source.zip') != ''
-        run: |
-          set -euo pipefail
-          python3 - <<'IMPORT'
-          from pathlib import Path, PurePosixPath
-          import hashlib, zipfile
-          p = Path('athenaeum-native-source.zip')
-          assert hashlib.sha256(p.read_bytes()).hexdigest() == '67086140869cb450ccf79ad8c96797e248befcd0aef4febe9ea960c7d61e16e7', 'Source checksum mismatch'
-          with zipfile.ZipFile(p) as archive:
-              for item in archive.infolist():
-                  path = PurePosixPath(item.filename)
-                  assert not path.is_absolute() and '..' not in path.parts and path.parts[0] not in ('.git', '.github')
-              archive.extractall('.')
-          IMPORT
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm athenaeum-native-source.zip
-          git add --all
-          git commit -m "Apply HugoBlox Academic CV for Shane's Athenaeum"
-          git push origin HEAD:main
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
