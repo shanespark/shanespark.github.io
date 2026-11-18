@@ -1,0 +1,48 @@
+hugoblox:
+  schema: '2.0'
+  identity:
+    name: 'Shane’s Athenaeum'
+    organization: 'Shane Park'
+    type: person
+    tagline: 'AI Security & Interpretability'
+    description: 'Shane Park’s academic homepage and research notebook on AI security, interpretability, and language-model agents.'
+  theme:
+    mode: system
+    pack: athenaeum
+  typography:
+    pack: academic
+  layout:
+    radius: sm
+    spacing: spacious
+  header:
+    enable: true
+    style: navbar
+    sticky: true
+    search: false
+    theme_toggle: true
+    theme_picker: false
+    language_switcher: false
+  footer:
+    style: minimal
+    language_switcher: false
+  copyright:
+    notice: '© {year} Shane Park.'
+  content:
+    math:
+      enable: true
+    toc:
+      enable: true
+    reading_time:
+      enable: true
+  search:
+    enable: false
+  comments:
+    enable: false
+  repository:
+    enable: false
+  locale:
+    date_format: 'Jan 2, 2006'
+  debug:
+    enable: false
+  pro:
+    hide_attribution: false

@@ -1,0 +1,11 @@
+/* Preserve the native HugoBlox Academic CV layout and typography. */
+html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+#summary, #education, #interests, #research, #publications { scroll-margin-top: 100px; }
+#site-header .navbar-brand img { border-radius: 4px; margin-right: 10px; }
+#site-header .navbar-brand { font-size: 22px; }
+#education .grid { grid-template-columns: minmax(0, 1fr); }
+#education .grid > div { max-width: 38rem; }
+pre { overflow-x: auto; }
+.katex-display { overflow-x: auto; overflow-y: hidden; }
+@media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

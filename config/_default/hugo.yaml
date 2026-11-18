@@ -1,0 +1,29 @@
+title: 'Shane’s Athenaeum'
+baseURL: 'https://shanespark.github.io/'
+defaultContentLanguage: en
+hasCJKLanguage: true
+defaultContentLanguageInSubdir: false
+enableRobotsTXT: true
+disableKinds: [taxonomy, term]
+enableGitInfo: false
+summaryLength: 35
+build:
+  writeStats: true
+outputs:
+  home: [HTML, RSS]
+  section: [HTML, RSS]
+pagination:
+  pagerSize: 10
+markup:
+  _merge: deep
+  highlight:
+    lineNos: false
+    noClasses: true
+    style: dracula
+  goldmark:
+    renderer:
+      unsafe: false
+imaging:
+  quality: 88
+  resampleFilter: lanczos
+timeout: 120s
