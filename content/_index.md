@@ -21,16 +21,9 @@ sections:
       size: medium
       shape: circle
   id: summary
-- block: collection
+- block: publication-tabs
   content:
     title: Recent Publications
     text: ''
-    filters:
-      folders:
-      - publications
-      exclude_featured: false
-    count: 5
-  design:
-    view: citation
   id: publications
 ---
