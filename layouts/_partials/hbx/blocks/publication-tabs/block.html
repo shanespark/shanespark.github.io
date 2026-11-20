@@ -1,0 +1,57 @@
+{{/* Keep the native citation view, grouped by publication_scope. */}}
+{{ $papers := (where site.RegularPages "Section" "publications").ByDate.Reverse }}
+{{ $domestic := where $papers "Params.publication_scope" "ne" "international" }}
+{{ $international := where $papers "Params.publication_scope" "eq" "international" }}
+{{ $id := .wcBlock.id | default "publications" }}
+{{ $groups := slice (dict "key" "domestic" "label" "Domestic" "papers" $domestic) (dict "key" "international" "label" "International" "papers" $international) }}
+<div class="publication-tabs">
+  <h2 class="publication-tabs-heading">{{ .wcBlock.content.title }}</h2>
+  <div class="publication-tablist" role="tablist" aria-label="Publication category" hidden>
+    {{ range $index, $group := $groups }}
+      <button class="publication-tab" type="button" role="tab" id="{{ $id }}-tab-{{ .key }}" aria-controls="{{ $id }}-panel-{{ .key }}" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}" tabindex="{{ if eq $index 0 }}0{{ else }}-1{{ end }}">
+        {{ .label }}<span class="publication-tab-count">{{ len .papers }}</span>
+      </button>
+    {{ end }}
+  </div>
+  {{ range $groups }}
+    <div class="publication-panel" role="tabpanel" id="{{ $id }}-panel-{{ .key }}" aria-labelledby="{{ $id }}-tab-{{ .key }}" tabindex="0">
+      <h3 class="publication-group-title">{{ .label }}</h3>
+      {{ range .papers }}
+        {{ partial "views/citation.html" (dict "item" .) }}
+      {{ else }}
+        <p>No publications yet.</p>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
+<script>
+(() => {
+  const root = document.currentScript.previousElementSibling;
+  const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+  const select = (index) => {
+    tabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index));
+    tab.addEventListener('keydown', (event) => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      select(next);
+      tabs[next].focus();
+    });
+  });
+  root.setAttribute('data-enhanced', '');
+  root.querySelector('[role="tablist"]').hidden = false;
+  select(0);
+})();
+</script>
