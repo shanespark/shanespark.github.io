@@ -11,24 +11,24 @@ hugoblox:
       primary: '#263b55'
       secondary: '#9b783b'
     surfaces:
-      background: '#f8f6f1'
+      background: '#faf9f6'
       foreground: '#222b38'
       header:
-        background: '#f8f6f1'
+        background: '#faf9f6'
         foreground: '#222b38'
       footer:
-        background: '#f8f6f1'
+        background: '#faf9f6'
         foreground: '#616771'
   dark:
     colors:
       primary: '#d4b676'
       secondary: '#93adcc'
     surfaces:
-      background: '#0c1220'
+      background: '#16181d'
       foreground: '#e9e5dc'
       header:
-        background: '#0c1220'
+        background: '#16181d'
         foreground: '#e9e5dc'
       footer:
-        background: '#0c1220'
+        background: '#16181d'
         foreground: '#a1aabc'
