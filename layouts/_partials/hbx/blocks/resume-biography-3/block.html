@@ -469,10 +469,12 @@
                       {{ if $end }}<br>{{ $end }}{{ end }}
                     </p>
                   {{ end }}
-                  {{ if $institution }}
-                    <p class="text-gray-700 dark:text-gray-300 text-base">{{ $institution }}</p>
-                  {{ end }}
-                  {{ with index . "gpa" }}<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">GPA: {{ . }}</p>{{ end }}
+                  <div class="education-institution-row">
+                    {{ if $institution }}
+                      <p class="text-gray-700 dark:text-gray-300 text-base">{{ $institution }}</p>
+                    {{ end }}
+                    {{ with index . "gpa" }}<p class="education-gpa text-sm text-gray-500 dark:text-gray-400">GPA: {{ . }}</p>{{ end }}
+                  </div>
                 </div>
               </div>
             </div>
