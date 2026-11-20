@@ -37,6 +37,22 @@ collections:
       - name: title
         label: 제목
         widget: string
+      - name: card_image
+        label: 메인 이미지
+        widget: image
+        required: false
+        hint: 카드 상단 이미지입니다. 가로 16:9를 권장하며, 비워두면 기본 그래픽을 표시합니다.
+      - name: category
+        label: 섹션
+        widget: select
+        required: false
+        options: [Interpretability/XAI, Agent Security, Benchmark]
+        hint: 블로그 상단 필터에 사용합니다. 비워두면 All에만 표시합니다.
+      - name: keyword
+        label: 메인 키워드
+        widget: string
+        required: false
+        hint: 날짜 옆에 표시합니다. 예) Mechanistic Interpretability, Prompt Injection. 비워두면 섹션 또는 글 종류를 표시합니다.
       - name: date
         label: 발행일
         widget: datetime
@@ -53,10 +69,10 @@ collections:
           - {label: 연구 노트, value: Research Note}
           - {label: 실험·구현, value: Experiments}
       - name: summary
-        label: 짧은 소개
+        label: Description · 짧은 소개
         widget: text
         required: false
-        hint: 블로그 목록에 표시할 요약입니다.
+        hint: 블로그 카드에서 제목 아래에 표시할 설명입니다.
       - name: draft
         label: 초안으로 저장
         widget: boolean
