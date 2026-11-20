@@ -1,5 +1,8 @@
 /* Preserve the native HugoBlox Academic CV layout and typography. */
 :root { --ath-page-width: 88rem; --ath-page-gutter: clamp(1.25rem, 3vw, 3rem); --ath-section-space: clamp(3rem, 5vw, 5rem); }
+/* Quiet paper/ink surfaces; reserve gold for small icons and selected controls. */
+:root { --ath-rule: #deded9; --ath-muted: #616873; --ath-accent: #8c6f36; }
+.dark { --ath-rule: #35383f; --ath-muted: #a8adb6; --ath-accent: #c4ad7e; }
 html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary, #education, #interests, #research, #publications { scroll-margin-top: 100px; }
 .ath-profile-shell, .publication-tabs, .ath-footer-inner, .blogs-index, #site-header .navbar { width: calc(100% - 2 * var(--ath-page-gutter)); max-width: var(--ath-page-width); margin-inline: auto; }
@@ -8,6 +11,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary .resume-biography { padding: var(--ath-section-space) 0; }
 .ath-profile-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
 .ath-profile-sidebar { min-width: 0; }
+.ath-profile-role { color: var(--hb-color-foreground); }
+.ath-profile-icon { border: 1px solid var(--ath-rule); color: var(--ath-accent); }
+.ath-profile-social { border: 1px solid var(--ath-rule); color: var(--ath-muted); transition: color .2s, border-color .2s; }
+.ath-profile-social:hover { border-color: currentColor; color: var(--hb-color-foreground); }
+.ath-profile-social:focus-visible { outline: 2px solid var(--ath-accent); outline-offset: 4px; }
 .ath-profile-content { display: flex; flex-direction: column; gap: 3rem; min-width: 0; }
 .ath-profile-section { width: 100%; min-width: 0; margin: 0; }
 .ath-profile-content .prose, .ath-profile-content .bio-text { width: 100%; max-width: none; }
@@ -20,11 +28,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary .avatar-portrait .avatar { position: absolute; width: 88%; height: auto; max-width: none; left: 6%; top: -4px; }
 #education .grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 #education .grid > div { min-width: 0; max-width: none; }
-.ath-education-card { padding: 1.25rem 1.5rem; }
+.ath-education-card { padding: 1.25rem 1.5rem; border: 1px solid var(--ath-rule); border-radius: 6px; }
 .ath-education-card .flex-1 { min-width: 0; }
 .education-institution-row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1rem; flex-wrap: wrap; }
 .education-gpa { margin-left: auto; white-space: nowrap; }
 .ath-interest-list { gap: .625rem; }
+.ath-interest { color: var(--hb-color-foreground); border: 1px solid var(--ath-rule); }
 #publications { padding: var(--ath-section-space) 0; }
 .publication-tabs { padding: 0; }
 .publication-tabs-heading { text-align: center; font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; }
@@ -37,13 +46,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 .publication-panel { font-size: 1rem; line-height: 1.8; }
 .publication-group-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
 .publication-tabs[data-enhanced] .publication-group-title { display: none; }
-.dark .publication-tablist { border-color: #d4b67640; background: #d4b6760a; }
+.dark .publication-tablist { border-color: var(--ath-rule); background: transparent; }
 .dark .publication-tab { color: #c6c9d1; }
-.dark .publication-tab[aria-selected="true"] { background: #d4b676; color: #0c1220; }
+.dark .publication-tab[aria-selected="true"] { background: #d4b676; color: #16181d; }
 .dark .publication-tab:focus-visible, .dark .publication-panel:focus-visible { outline-color: #d4b676; }
 /* Give the end of each page a calm, deliberate finish and room below the links. */
 .ath-footer { --footer-muted: #616873; --footer-border: #263b5526; margin-top: clamp(2rem, 4vw, 4rem); padding: 0 0 calc(clamp(3rem, 5vw, 5rem) + env(safe-area-inset-bottom, 0px)); }
-.dark .ath-footer { --footer-muted: #a1a9b8; --footer-border: #d4b67633; }
+.dark .ath-footer { --footer-muted: #a1a9b8; --footer-border: var(--ath-rule); }
 .ath-footer-inner { padding-top: 2rem; border-top: 1px solid var(--footer-border); }
 .ath-footer-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; }
 .ath-footer-brand { display: inline-flex; align-items: center; gap: .65rem; color: inherit; font-family: var(--hb-font-heading, inherit); font-size: 1.25rem; font-weight: 600; text-decoration: none; }
