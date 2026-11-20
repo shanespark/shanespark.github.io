@@ -181,13 +181,14 @@
 
         {{ if $avatar }}
         <div class="avatar-wrapper {{ if $img }}-mt-24{{else}}mb-4{{end}}" style="width: {{$display_size}}px; height: {{$display_size}}px;">
-          {{ $avatar_image := $avatar.Fill (printf "%sx%s Top" $generation_size $generation_size) }}
-          <img class="avatar {{$shape_class}} border-4 border-white shadow-2xl" 
+          {{ $avatar_image := $avatar.Resize (printf "%sx" $generation_size) }}
+          <div class="avatar-portrait {{$shape_class}} border-4 border-white shadow-2xl">
+          <img class="avatar"
                src="{{ $avatar_image.RelPermalink }}" 
                alt="{{$profile.title}}"
-               width="{{$display_size}}" 
-               height="{{$display_size}}"
-               style="width: {{$display_size}}px; height: {{$display_size}}px; object-fit: cover;">
+               width="{{$avatar_image.Width}}"
+               height="{{$avatar_image.Height}}">
+          </div>
           {{ with $status_icon }}<span class="avatar-emoji">{{ . | emojify }}</span>{{ end }}
         </div>
         {{ end }}
@@ -211,6 +212,10 @@
             <h1 class="{{ $name_class }} font-black text-gray-900 dark:text-white leading-tight">
               {{ $profile.title }}
             </h1>
+          {{ end }}
+
+          {{ with $profile.name_alternate }}
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ . }}</p>
           {{ end }}
           
           {{ $pronouns := "" }}
