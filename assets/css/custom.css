@@ -1,23 +1,32 @@
 /* Preserve the native HugoBlox Academic CV layout and typography. */
+:root { --ath-page-width: 88rem; --ath-page-gutter: clamp(1.25rem, 3vw, 3rem); --ath-section-space: clamp(3rem, 5vw, 5rem); }
 html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary, #education, #interests, #research, #publications { scroll-margin-top: 100px; }
+.ath-profile-shell, .publication-tabs, .ath-footer-inner, .blogs-index, #site-header .navbar { width: calc(100% - 2 * var(--ath-page-gutter)); max-width: var(--ath-page-width); margin-inline: auto; }
+#site-header .navbar { padding-inline: 0; }
 #summary { padding-block: 0; }
-#summary .resume-biography { padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 3vw, 3rem); }
-.ath-profile-shell { max-width: 88rem; margin-inline: auto; }
+#summary .resume-biography { padding: var(--ath-section-space) 0; }
 .ath-profile-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-.ath-profile-content { min-width: 0; }
-.ath-profile-content .prose { max-width: 76ch; }
-.ath-profile-content .bio-text { max-width: none; }
+.ath-profile-sidebar { min-width: 0; }
+.ath-profile-content { display: flex; flex-direction: column; gap: 3rem; min-width: 0; }
+.ath-profile-section { width: 100%; min-width: 0; margin: 0; }
+.ath-profile-content .prose, .ath-profile-content .bio-text { width: 100%; max-width: none; }
+.ath-profile-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.ath-profile-heading > h2, .ath-profile-heading > h3 { margin: 0; font-size: clamp(1.375rem, 1.6vw, 1.875rem); line-height: 1.25; letter-spacing: -.02em; }
 @media (min-width: 48rem) { .ath-profile-grid { grid-template-columns: clamp(15rem, 22vw, 20rem) minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 5rem); } #summary .ath-profile-sidebar h1 { font-size: clamp(2.25rem, 3.25vw, 3rem); } }
 #site-header .navbar-brand img { border-radius: 4px; margin-right: 10px; }
 #site-header .navbar-brand { font-size: 22px; }
 #summary .avatar-portrait { position: relative; width: 100%; height: 100%; overflow: hidden; background: #fff; }
 #summary .avatar-portrait .avatar { position: absolute; width: 88%; height: auto; max-width: none; left: 6%; top: -4px; }
-#education .grid { grid-template-columns: minmax(0, 1fr); }
+#education .grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 #education .grid > div { min-width: 0; max-width: none; }
+.ath-education-card { padding: 1.25rem 1.5rem; }
+.ath-education-card .flex-1 { min-width: 0; }
 .education-institution-row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1rem; flex-wrap: wrap; }
 .education-gpa { margin-left: auto; white-space: nowrap; }
-.publication-tabs { max-width: 88rem; margin: 0 auto; padding: 0 clamp(1.25rem, 3vw, 3rem); }
+.ath-interest-list { gap: .625rem; }
+#publications { padding: var(--ath-section-space) 0; }
+.publication-tabs { padding: 0; }
 .publication-tabs-heading { text-align: center; font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; }
 .publication-tablist { display: flex; gap: .25rem; width: fit-content; margin: 0 auto 2rem; padding: .25rem; border: 1px solid #263b5526; border-radius: 999px; background: #263b5508; }
 .publication-tablist[hidden], .publication-panel[hidden] { display: none; }
@@ -33,9 +42,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 .dark .publication-tab[aria-selected="true"] { background: #d4b676; color: #0c1220; }
 .dark .publication-tab:focus-visible, .dark .publication-panel:focus-visible { outline-color: #d4b676; }
 /* Give the end of each page a calm, deliberate finish and room below the links. */
-.ath-footer { --footer-muted: #616873; --footer-border: #263b5526; margin-top: clamp(3rem, 6vw, 6rem); padding: 0 clamp(1.25rem, 4vw, 3rem) calc(clamp(3rem, 5vw, 5rem) + env(safe-area-inset-bottom, 0px)); }
+.ath-footer { --footer-muted: #616873; --footer-border: #263b5526; margin-top: clamp(2rem, 4vw, 4rem); padding: 0 0 calc(clamp(3rem, 5vw, 5rem) + env(safe-area-inset-bottom, 0px)); }
 .dark .ath-footer { --footer-muted: #a1a9b8; --footer-border: #d4b67633; }
-.ath-footer-inner { max-width: 74rem; margin-inline: auto; padding-top: 2rem; border-top: 1px solid var(--footer-border); }
+.ath-footer-inner { padding-top: 2rem; border-top: 1px solid var(--footer-border); }
 .ath-footer-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; }
 .ath-footer-brand { display: inline-flex; align-items: center; gap: .65rem; color: inherit; font-family: var(--hb-font-heading, inherit); font-size: 1.25rem; font-weight: 600; text-decoration: none; }
 .ath-footer-brand img { flex-shrink: 0; border-radius: 3px; }
@@ -50,7 +59,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 .ath-footer a:focus-visible, .ath-footer button:focus-visible { outline: 2px solid #9b783b; outline-offset: 5px; border-radius: 2px; }
 .dark .ath-footer a:focus-visible, .dark .ath-footer button:focus-visible { outline-color: #d4b676; }
 .ath-footer [hidden] { display: none; }
-@media (max-width: 40rem) { .ath-footer-inner { padding-top: 1.5rem; } .ath-footer-heading { gap: 1rem; } .ath-footer-brand { font-size: 1.125rem; } .ath-footer-bottom { flex-direction: column; gap: 1.25rem; } }
+@media (max-width: 40rem) {
+  .ath-profile-content { gap: 2.5rem; }
+  .ath-profile-heading { gap: .75rem; margin-bottom: 1.25rem; }
+  .ath-education-card { padding: 1.125rem; }
+  .ath-education-card > .flex { gap: .75rem; }
+  .ath-education-card .w-12.h-12 { width: 2.25rem; height: 2.25rem; }
+  .ath-education-card .text-xl { font-size: 1.125rem; line-height: 1.4; }
+  .education-institution-row { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .education-gpa { margin-left: 0; }
+  .ath-footer-inner { padding-top: 1.5rem; }
+  .ath-footer-heading { gap: 1rem; }
+  .ath-footer-brand { font-size: 1.125rem; }
+  .ath-footer-bottom { flex-direction: column; gap: 1.25rem; }
+}
 pre { overflow-x: auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
