@@ -1,1 +1,27 @@
-<footer class="ath-footer"><p>© {{ now.Format "2006" }} Shane Park. <span aria-hidden="true">·</span> Built with <a href="https://hugoblox.com/" target="_blank" rel="noopener noreferrer">HugoBlox</a> <a class="analytics-footer-link" href="{{ "privacy/" | relURL }}">Privacy</a>{{ if site.Params.hugoblox.analytics.google.measurement_id }}<button type="button" class="analytics-footer-link" data-open-analytics-settings hidden>통계 설정</button>{{ end }}</p></footer>
+<footer class="ath-footer">
+  <div class="ath-footer-inner">
+    <div class="ath-footer-heading">
+      <a class="ath-footer-brand" href="{{ "/" | relURL }}">
+        {{ with resources.Get "media/logo.png" }}
+          {{ $logo := .Resize "64x64" }}
+          <img src="{{ $logo.RelPermalink }}" alt="" width="28" height="28" loading="lazy" />
+        {{ end }}
+        <span>Shane’s Athenaeum</span>
+      </a>
+      <a class="ath-footer-top" href="#top">Back to top</a>
+    </div>
+    <div class="ath-footer-bottom">
+      <p class="ath-footer-copyright">
+        © {{ now.Format "2006" }} Shane Park.
+        <span class="ath-footer-credit">Built with <a href="https://hugoblox.com/" target="_blank" rel="noopener noreferrer">HugoBlox</a></span>
+      </p>
+      <nav class="ath-footer-links" aria-label="Footer">
+        <a href="{{ "blog/" | relURL }}">Blog</a>
+        <a href="{{ "privacy/" | relURL }}">Privacy</a>
+        {{ if site.Params.hugoblox.analytics.google.measurement_id }}
+          <button type="button" class="analytics-footer-link" data-open-analytics-settings hidden>통계 설정</button>
+        {{ end }}
+      </nav>
+    </div>
+  </div>
+</footer>
