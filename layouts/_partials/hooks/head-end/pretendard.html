@@ -1,12 +1,39 @@
-{{/* Use the official, pinned Korean/Latin subsets; preserve code and math fonts. */}}
+{{/* Keep the academic serif identity; use Pretendard only in the blog content. */}}
+{{ if eq .Section "blog" }}
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin />
 <style>
   :root {
     --athenaeum-font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  }
+  .page-body {
     --hb-font-heading: var(--athenaeum-font-sans);
     --hb-font-body: var(--athenaeum-font-sans);
-    --hb-font-nav: var(--athenaeum-font-sans);
     --hb-font-family-sans: var(--athenaeum-font-sans);
+    font-family: var(--athenaeum-font-sans);
+  }
+  /* 1rem = 16px = 12pt at the browser's default size; allow user scaling. */
+  .page-body .prose {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .page-body h1 {
+    font-size: 1.5rem;
+    line-height: 1.35;
+  }
+  .page-body .prose h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+  .page-body .prose h3 {
+    font-size: 1.125rem;
+    line-height: 1.45;
+  }
+  .page-body .prose h4,
+  .page-body .prose h5,
+  .page-body .prose h6 {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 </style>
+{{ end }}
