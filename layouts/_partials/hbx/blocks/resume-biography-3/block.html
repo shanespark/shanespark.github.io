@@ -297,7 +297,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           {{ range $links }}
           {{ $linkUrl := "" }}
-          {{ $iconName := "hero/link" }}
+          {{ $iconName := "lucide/link" }}
           {{ $linkLabel := "" }}
           {{ if reflect.IsMap . }}
             {{ $urlRaw := index . "url" | default (index . "link") }}
@@ -333,7 +333,7 @@
                class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 
                       shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 
                       transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              {{ partial "functions/get_icon" (dict "name" $iconName "attributes" "class=\"w-6 h-6\"")  }}
+              {{ partial "functions/get_icon" (dict "name" $iconName "attributes" "aria-hidden='true' focusable='false' class=\"w-6 h-6\"")  }}
             </a>
           {{ end }}
           {{ end }}
@@ -357,7 +357,7 @@
         <div class="ath-profile-section">
           <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
-              {{ partial "functions/get_icon" (dict "name" "identification" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
+              {{ partial "functions/get_icon" (dict "name" "lucide/user-round" "attributes" "aria-hidden='true' focusable='false' class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
             {{ $i18n_about := i18n "about_me" }}
             {{ $about_default := cond (eq $i18n_about "about_me") "Professional Summary" $i18n_about }}
@@ -403,7 +403,7 @@
             <div class="mb-16">
               <a href="{{ $button_link | safeURL }}" {{ $target | safeHTMLAttr }}
                  class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                {{ partial "functions/get_icon" (dict "name" "document-arrow-down" "attributes" "class='w-5 h-5 mr-3'") }}
+                {{ partial "functions/get_icon" (dict "name" "lucide/download" "attributes" "aria-hidden='true' focusable='false' class='w-5 h-5 mr-3'") }}
                 {{ $button_text }}
               </a>
             </div>
@@ -420,7 +420,7 @@
         <div id="education" class="ath-profile-section">
           <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
-              {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
+              {{ partial "functions/get_icon" (dict "name" "lucide/graduation-cap" "attributes" "aria-hidden='true' focusable='false' class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
             {{ $education_heading := i18n "education" }}
             {{ $education_heading_raw := index $headings "education" }}
@@ -455,9 +455,9 @@
               <div class="flex gap-4">
                 <div class="flex-shrink-0 w-12 h-12 bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 rounded-full flex items-center justify-center shadow-md">
                   {{ if $icon }}
-                    {{ partial "functions/get_icon" (dict "name" $icon "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
+                    {{ partial "functions/get_icon" (dict "name" $icon "attributes" "aria-hidden='true' focusable='false' class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
                   {{ else }}
-                    {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
+                    {{ partial "functions/get_icon" (dict "name" "lucide/graduation-cap" "attributes" "aria-hidden='true' focusable='false' class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
                   {{ end }}
                 </div>
                 <div class="flex-1 flex-grow">
@@ -501,7 +501,7 @@
         <div id="interests" class="ath-profile-section">
           <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
-              {{ partial "functions/get_icon" (dict "name" "sparkles" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
+              {{ partial "functions/get_icon" (dict "name" "lucide/sparkles" "attributes" "aria-hidden='true' focusable='false' class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
             {{ $interests_heading := i18n "interests" }}
             {{ $interests_heading_raw := index $headings "interests" }}
