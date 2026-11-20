@@ -1,0 +1,8 @@
+{{/* Use the Athenaeum logo for tab and Apple icons instead of the theme's bundled icon. */}}
+{{- $size := . | default 32 -}}
+{{- $logo := resources.Get "media/logo.png" -}}
+{{- if not $logo -}}
+  {{- errorf "The site icon requires assets/media/logo.png" -}}
+{{- end -}}
+{{- $icon := $logo.Fill (printf "%dx%d Center" (int $size) (int $size)) | fingerprint "sha256" -}}
+{{- return (dict "resource" $icon "type" "image/png" "is_svg" false) -}}
