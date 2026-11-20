@@ -47,4 +47,5 @@ Create a production build with `pnpm run build`.
 
 Built with [HugoBlox Academic CV](https://github.com/HugoBlox/hugo-theme-academic-cv).
 The original MIT license is preserved in [LICENSE.md](LICENSE.md).
+UI icons use [Lucide](https://lucide.dev/), bundled locally; see [license notices](licenses/lucide.txt).
 The portrait and S monogram are personal profile assets.
