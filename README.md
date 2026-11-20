@@ -12,6 +12,18 @@ Shane Park’s academic homepage and research notebook. Built with **HugoBlox Ac
 - 상단 메뉴는 메인 페이지의 각 섹션으로 이동합니다.
 - 라이트 / 다크 모드는 시스템 설정을 따르며, 사용자가 바꾼 모드는 다음 방문에도 유지됩니다.
 
+## 검색 등록과 방문 통계
+
+- **Google Search Console:** `https://search.google.com/u/1/search-console?resource_id=https%3A%2F%2Fshanespark.github.io%2F`에서 검색 노출·검색어·색인 상태를 확인합니다. 사이트맵은 `https://shanespark.github.io/sitemap.xml`이며 글을 발행할 때 자동 갱신됩니다. `hugoblox.verification.google`의 인증 태그는 소유권 확인 뒤에도 유지합니다.
+- **Google Analytics 4:** 개인 Gmail의 기존 Analytics 계정 아래 **Shane’s Athenaeum** 속성을 별도로 사용합니다. 속성 ID는 `565155742`, 측정 ID는 `G-D5ZF2TW141`입니다. 대시보드는 `https://analytics.google.com/analytics/web/?authuser=1#/a391200393p565155742/reports/intelligenthome`에서 엽니다. Google 로그인 순서가 달라졌다면 개인 계정과 속성 이름을 직접 선택합니다.
+- **보고서:** 트래픽 확보에서 유입 경로, 페이지 및 화면에서 인기 글·참여 시간, 사용자 속성·기술 보고서에서 지역·기기를 확인합니다. 글의 섹션은 기본 `content_group`으로 전송합니다.
+- **측정 설정:** 보고 시간대는 대한민국, 통화는 KRW입니다. 향상된 측정은 유지하고 브라우저 방문 기록 기반 페이지뷰는 꺼서 블로그 필터 변경을 중복 조회로 세지 않습니다. 양식 상호작용 측정은 사용하지 않습니다.
+- **추가 이벤트:** `select_content`는 섹션 선택(`content_type: blog_subject`)과 카드 클릭(`content_type: blog_post`)을 구분합니다. `article_read_25`, `article_read_50`, `article_read_75`, `article_read_90`은 본문에서 스크롤로 도달한 지점을 나타내며 실제로 읽고 이해했음을 뜻하지는 않습니다.
+- **동의와 테스트:** 처음 방문하면 통계 선택을 표시합니다. 허용 전에는 Google 태그 요청을 보내지 않으며 광고 기능과 Google Signals는 끕니다. 하단 Privacy / 통계 설정에서 내용을 확인하고 선택을 변경합니다. 로컬 미리보기에서는 Google로 데이터를 보내지 않습니다. `/admin/`은 측정 대상이 아닙니다.
+- **검색 메타데이터:** canonical URL, RSS, Open Graph, BlogPosting 구조화 데이터를 생성합니다. 홈페이지에는 사이트 이름과 Shane Park(박상현)의 Person 정보를 함께 제공합니다. 로컬 래스터 카드 이미지는 공유 미리보기에도 사용합니다.
+
+Search Console의 소유권 확인·사이트맵 제출과 실제 Google 색인 생성은 서로 다른 단계입니다. 검색 노출과 Analytics 기본 보고서는 즉시 반영되지 않을 수 있습니다. Google은 사이트맵 제출만으로 색인이나 순위를 보장하지 않습니다.
+
 ## 새 글 쓰기
 
 ### 블로그에서 작성하기
