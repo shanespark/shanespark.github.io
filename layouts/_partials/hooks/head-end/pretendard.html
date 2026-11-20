@@ -17,6 +17,12 @@
     font-size: 1rem;
     line-height: 1.75;
   }
+  /* Give desktop articles a little more room without changing mobile gutters. */
+  @media (min-width: 64rem) {
+    .page-body main > .prose[data-pagefind-body] {
+      max-width: 74ch;
+    }
+  }
   .page-body h1 {
     font-size: 1.5rem;
     line-height: 1.35;
