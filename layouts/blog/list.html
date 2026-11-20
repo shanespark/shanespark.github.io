@@ -1,0 +1,132 @@
+{{ define "main" }}
+{{ $posts := .RegularPagesRecursive.ByDate.Reverse }}
+{{ $filters := slice
+  (dict "label" "All" "id" "all")
+  (dict "label" "Interpretability/XAI" "id" "interpretability-xai")
+  (dict "label" "Agent Security" "id" "agent-security")
+  (dict "label" "Benchmark" "id" "benchmark")
+}}
+<main class="blogs-index" id="blogs-index">
+  <header class="blogs-heading">
+    <h1>{{ .Title }}</h1>
+    <a class="blogs-write" href="{{ "admin/" | relURL }}">글쓰기 · 글 관리</a>
+  </header>
+
+  <div class="blogs-toolbar">
+    <div class="blogs-filters" role="group" aria-label="Filter posts by subject" hidden>
+      {{ range $filters }}
+      <button type="button" class="blogs-filter" data-filter="{{ .id }}" aria-pressed="{{ if eq .id "all" }}true{{ else }}false{{ end }}" aria-controls="blogs-grid">{{ .label }}</button>
+      {{ end }}
+    </div>
+    <p class="blogs-count" role="status" aria-live="polite" aria-atomic="true">{{ len $posts }} {{ if eq (len $posts) 1 }}post{{ else }}posts{{ end }}</p>
+  </div>
+
+  <div class="blogs-grid" id="blogs-grid">
+    {{ range $posts }}
+    {{ $post := . }}
+    {{ $category := .Params.category | default "" }}
+    {{ $category_id := "uncategorized" }}
+    {{ range $filters }}
+      {{ if eq $category .label }}{{ $category_id = .id }}{{ end }}
+    {{ end }}
+    {{ $keyword := .Params.keyword | default $category | default .Params.topic | default "Research Note" }}
+    {{ $description := .Params.description | default .Params.summary | default .Summary | plainify }}
+    <article class="blogs-card" data-category="{{ $category_id }}">
+      <a class="blogs-card-link" href="{{ .RelPermalink }}">
+        <div class="blogs-card-image">
+          {{ with .Params.card_image }}
+            {{ $src := . }}
+            {{ with $post.Resources.GetMatch . }}
+              {{ $src = .RelPermalink }}
+            {{ else }}
+              {{ if not (or (hasPrefix $src "/") (hasPrefix $src "https://") (hasPrefix $src "http://")) }}
+                {{ $src = printf "%s%s" $post.RelPermalink $src }}
+              {{ end }}
+            {{ end }}
+            <img src="{{ $src }}" alt="" width="800" height="450" loading="lazy" decoding="async" />
+          {{ else }}
+            <svg viewBox="0 0 640 360" aria-hidden="true" focusable="false" class="blogs-cover-art">
+              <g class="blogs-cover-grid" fill="none" stroke-width="1">
+                <path d="M0 90H640M0 180H640M0 270H640M160 0V360M320 0V360M480 0V360" />
+              </g>
+              <g class="blogs-cover-planes" fill="none" stroke-width="1.5" stroke-linejoin="round">
+                <path d="m144 122 176-58 176 88-176 58Z" />
+                <path d="m144 169 176-58 176 88-176 58Z" />
+                <path d="m144 216 176-58 176 88-176 58Z" />
+                <path d="M144 122v94M320 64v94M496 152v94M320 210v94" stroke-dasharray="3 7" />
+              </g>
+              <g class="blogs-cover-network" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m229 187 91-29 92 45-92 29-91-45Zm91-29v74m-91-45 91 45 92-29" fill="none" />
+                <circle cx="229" cy="187" r="4" /><circle cx="320" cy="158" r="4" />
+                <circle cx="412" cy="203" r="4" /><circle cx="320" cy="232" r="4" />
+              </g>
+            </svg>
+          {{ end }}
+        </div>
+        <h2 class="blogs-card-title">{{ .Title }}</h2>
+        <p class="blogs-card-description">{{ $description | truncate 180 }}</p>
+        <p class="blogs-card-meta">
+          <span>{{ $keyword }}</span><span aria-hidden="true">·</span>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        </p>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+
+  <div class="blogs-empty" {{ if gt (len $posts) 0 }}hidden{{ end }}>
+    <p>아직 이 섹션에 공개된 글이 없습니다.</p>
+    <button class="blogs-reset" type="button" hidden>전체 글 보기</button>
+  </div>
+
+  <footer class="blogs-archive">
+    <span>Earlier writing</span>
+    <a href="https://chipkkang9.github.io/">C2SR Lab.</a>
+  </footer>
+</main>
+
+<script>
+(() => {
+  const root = document.getElementById('blogs-index');
+  if (!root) return;
+  const filters = root.querySelector('.blogs-filters');
+  const buttons = Array.from(root.querySelectorAll('[data-filter]'));
+  const cards = Array.from(root.querySelectorAll('.blogs-card'));
+  const count = root.querySelector('.blogs-count');
+  const empty = root.querySelector('.blogs-empty');
+  const reset = root.querySelector('.blogs-reset');
+  const allowed = new Set(buttons.map(button => button.dataset.filter));
+
+  function applyFilter(filter, updateUrl) {
+    const active = allowed.has(filter) ? filter : 'all';
+    let visible = 0;
+    for (const card of cards) {
+      card.hidden = active !== 'all' && card.dataset.category !== active;
+      if (!card.hidden) visible++;
+    }
+    for (const button of buttons) {
+      button.setAttribute('aria-pressed', String(button.dataset.filter === active));
+    }
+    count.textContent = `${visible} ${visible === 1 ? 'post' : 'posts'}`;
+    empty.hidden = visible !== 0;
+    reset.hidden = active === 'all';
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (active === 'all') url.searchParams.delete('category');
+      else url.searchParams.set('category', active);
+      window.history.replaceState(null, '', url);
+    }
+  }
+
+  for (const button of buttons) {
+    button.addEventListener('click', () => applyFilter(button.dataset.filter, true));
+  }
+  reset.addEventListener('click', () => {
+    applyFilter('all', true);
+    buttons[0].focus();
+  });
+  applyFilter(new URLSearchParams(window.location.search).get('category'), false);
+  filters.hidden = false;
+})();
+</script>
+{{ end }}
