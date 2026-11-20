@@ -8,7 +8,7 @@ name:
 role: AI Safety Researcher
 bio: 'My research focuses on making AI systems more understandable, controllable,
   and secure, with an emphasis
-  on **Security for AI** and **mechanistic interpretability**.
+  on **Security for AI** and **Mechanistic Interpretability**.
 
 
   My background includes the **11th Best of the Best (BoB) program**, Security Consulting
@@ -42,6 +42,5 @@ education:
 interests:
 - Security for AI
 - Mechanistic Interpretability
-- Activation Steering
 - LLM & Agent Security
 - Trustworthy Multimodal AI
