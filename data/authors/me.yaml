@@ -7,17 +7,10 @@ name:
   given: Shane
   family: Park
 role: AI Safety Researcher
-bio: 'My research focuses on making AI systems more understandable, controllable,
-  and secure, with an emphasis
-  on **Security for AI** and **Mechanistic Interpretability**.
+bio: |-
+  My research focuses on **Security for AI**, with particular interests in **Mechanistic Interpretability**, **LLM & Agent Security**, and **Trustworthy Multimodal AI**. I am interested in how internal representations shape model behavior and how interpretability can inform the evaluation and mitigation of unsafe or adversarial behavior. Drawing on my cybersecurity background at Ajou University, I approach these questions through empirical analysis of AI models and a systems security perspective.
 
-
-  My background includes the **11th Best of the Best (BoB) program**, Security Consulting
-  Track, where I completed the advanced education program as a Top 100 trainee. I
-  bring this security background to my work on language-model behavior and AI agent
-  security.
-
-  '
+  In **VLM-CAST**, I analyzed model responses and internal activations under different image–text conditions. In **VXShield**, I worked on an experimental pipeline for protecting speech against voice cloning, evaluating audio quality, speaker similarity, speech recognition performance, and cross-model robustness. During the **11th Best of the Best (BoB) program’s Security Consulting track**, I led a five-person team investigating UEFI vulnerabilities. Across these projects, I emphasize reproducible experiments, clear evaluation criteria, and careful analysis of failure cases.
 affiliations:
 - name: Seoul National University
   url: https://en.snu.ac.kr/
