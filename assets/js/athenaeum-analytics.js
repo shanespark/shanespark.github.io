@@ -55,9 +55,16 @@
     window.gtag('config', id, {
       page_location: safeLocation(), page_referrer: referrer,
       content_group: context.content_group || 'Information',
+      send_page_view: false,
       allow_google_signals: false, allow_ad_personalization_signals: false,
       cookie_domain: location.hostname, cookie_expires: lifetime / 1000,
       cookie_flags: 'SameSite=Lax;Secure'
+    });
+    // Send exactly one page view per document, independent of tag defaults.
+    window.gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: safeLocation(), page_referrer: referrer,
+      content_group: context.content_group || 'Information'
     });
     const tag = document.createElement('script');
     tag.async = true;
