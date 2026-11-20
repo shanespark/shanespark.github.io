@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="190" viewBox="0 0 760 190" role="img" aria-labelledby="title desc">
+  <title id="title">Writing, saving, and publishing a blog post</title>
+  <desc id="desc">Write the content, save the entry, and publish the blog post.</desc>
+  <rect width="760" height="190" rx="20" fill="#111827"/>
+  <path d="M228 95H282M478 95H532" stroke="#d4b676" stroke-width="2"/>
+  <g fill="#1d293b" stroke="#d4b676" stroke-width="1.2">
+    <rect x="30" y="35" width="198" height="120" rx="14"/>
+    <rect x="282" y="35" width="196" height="120" rx="14"/>
+    <rect x="532" y="35" width="198" height="120" rx="14"/>
+  </g>
+  <g text-anchor="middle" font-family="system-ui, sans-serif">
+    <g fill="#f8f6f1" font-size="25" font-weight="600">
+      <text x="129" y="91">Write</text><text x="380" y="91">Save</text><text x="631" y="91">Publish</text>
+    </g>
+    <g fill="#c4cedc" font-size="14">
+      <text x="129" y="120">Text · Math · Images</text><text x="380" y="120">Draft or ready</text><text x="631" y="120">Live on the blog</text>
+    </g>
+  </g>
+</svg>
