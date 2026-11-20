@@ -14,6 +14,29 @@ Shane Park’s academic homepage and research notebook. Built with **HugoBlox Ac
 
 ## 새 글 쓰기
 
+### 블로그에서 작성하기
+
+Blog 페이지의 **글쓰기 · 글 관리** 또는 https://shanespark.github.io/admin/ 에서 작성합니다. Sveltia CMS의 서식 편집기에서 제목·발행일·글 종류·요약·본문을 입력하고 이미지도 올릴 수 있습니다. Markdown 원문 모드도 지원합니다.
+
+처음 로그인할 때는 **Sign In with Token**을 사용합니다.
+
+1. GitHub의 **Settings → Developer settings → Personal access tokens → Fine-grained tokens**에서 토큰을 만듭니다.
+2. Resource owner는 **shanespark**, Repository access는 **Only select repositories → shanespark.github.io**로 제한합니다.
+3. Repository permissions에서 **Contents: Read and write**만 지정합니다. Metadata의 읽기 권한은 자동으로 포함됩니다. 이 설정은 PR을 만들지 않으므로 Pull requests·Workflows 권한은 필요 없습니다.
+4. 토큰을 `/admin/` 로그인 창에 직접 입력합니다. 토큰은 설정 파일이나 채팅에 넣지 않습니다. 토큰 생성·권한 승인은 계정 소유자가 직접 진행합니다.
+
+로그인 후 **글 → 새 글**을 선택합니다. 저장된 글을 선택하면 수정할 수 있습니다.
+
+- **초안으로 저장 켜짐**: 사이트에서는 표시하지 않습니다. 저장소가 공개이므로 원본 Markdown은 공개될 수 있습니다.
+- **초안으로 저장 꺼짐 + 저장**: GitHub Actions가 자동으로 사이트를 빌드하고 배포합니다. 반영에는 잠시 시간이 걸립니다.
+- 이미지는 글 폴더에 함께 저장됩니다. 본문의 이미지 버튼·붙여넣기·드래그를 사용할 수 있습니다.
+- 수식과 코드는 원문 모드에서 기존 Markdown 문법을 사용할 수 있습니다.
+- 브라우저가 로그인 토큰을 보관합니다. 토큰이 만료되거나 브라우저 데이터를 지우면 다시 로그인합니다.
+
+인증 서버와 추가 호스팅 비용 없이 사용하는 구성입니다. 편집기는 Sveltia CMS 0.270.0과 검증된 SRI 해시로 고정했습니다. CMS를 업데이트할 때 `static/admin/index.html`의 버전과 해시를 함께 갱신합니다.
+
+### GitHub에서 직접 작성하기
+
 GitHub에서 `content/blog/글-주소/index.md` 파일을 만들고 아래처럼 작성합니다.
 `draft: false`로 커밋하면 GitHub Actions가 자동으로 배포합니다. 별도 서버나 명령어는 필요 없습니다.
 
