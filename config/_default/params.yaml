@@ -11,11 +11,6 @@ hugoblox:
     pack: athenaeum
   typography:
     pack: academic
-    # Pretendard is loaded by the head-end hook rather than Google Fonts.
-    families:
-      heading: system-sans
-      body: system-sans
-      nav: system-sans
   layout:
     radius: sm
     spacing: spacious
