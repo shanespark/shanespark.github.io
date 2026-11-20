@@ -8,9 +8,6 @@ main:
   - name: Interests
     url: /#interests
     weight: 30
-  - name: Research
-    url: /#research
-    weight: 40
   - name: Publications
     url: /#publications
     weight: 50
