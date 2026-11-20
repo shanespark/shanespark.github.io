@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms@0.270.0/schema/sveltia-cms.json
+backend:
+  name: github
+  repo: shanespark/shanespark.github.io
+  branch: main
+  auth_methods: [token]
+
+app_title: Shane’s Athenaeum · Editor
+site_url: https://shanespark.github.io
+display_url: https://shanespark.github.io/blog/
+logo:
+  src: https://raw.githubusercontent.com/shanespark/shanespark.github.io/main/assets/media/logo.png
+
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: 글
+    label_singular: 글
+    description: 논문 리뷰와 AI 연구 노트를 작성하고 수정합니다.
+    folder: content/blog
+    path: '{{slug}}/index'
+    slug:
+      template: '{{title}}'
+      editable: [create]
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    index_file: false
+    media_folder: ''
+    public_folder: ''
+    preview_path: blog/{{slug}}/
+    summary: '{{title}} · {{date}}'
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: 제목
+        widget: string
+      - name: date
+        label: 발행일
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        default: '{{now}}'
+        hint: 미래 날짜로 지정하면 해당 날짜 전에는 사이트에 표시되지 않습니다.
+      - name: topic
+        label: 글 종류
+        widget: select
+        default: Paper Review
+        options:
+          - {label: 논문 리뷰, value: Paper Review}
+          - {label: 연구 노트, value: Research Note}
+          - {label: 실험·구현, value: Experiments}
+      - name: summary
+        label: 짧은 소개
+        widget: text
+        required: false
+        hint: 블로그 목록에 표시할 요약입니다.
+      - name: draft
+        label: 초안으로 저장
+        widget: boolean
+        default: true
+        hint: 켜면 사이트에 숨기고, 끄고 저장하면 자동으로 발행합니다. 공개 저장소에 저장됩니다.
+      - {name: authors, widget: hidden, default: [me]}
+      - {name: math, widget: hidden, default: true}
+      - {name: toc, widget: hidden, default: true}
+      - name: body
+        label: 본문
+        widget: markdown
+        modes: [rich_text, raw]
+        editor_components: [image, code-block, table]
+        default: |
+          ## 한 줄 요약
+
+          ## 배경과 핵심 아이디어
+
+          ## 실험과 결과
+
+          ## 한계와 내 생각
+
+          ## 참고 자료
