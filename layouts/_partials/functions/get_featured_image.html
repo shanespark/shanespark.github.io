@@ -1,0 +1,21 @@
+{{/* Reuse raster card covers for Open Graph and the native article schema. */}}
+{{ $resource := false }}
+{{ with .Params.card_image }}
+  {{ $candidate := $.Resources.GetMatch . }}
+  {{ if not $candidate }}{{ $candidate = resources.GetMatch (path.Join "media" .) }}{{ end }}
+  {{ if and $candidate (reflect.IsImageResourceProcessable $candidate) }}
+    {{ $resource = $candidate }}
+  {{ end }}
+{{ end }}
+{{ if not $resource }}
+  {{ $resource = (.Resources.ByType "image").GetMatch "*featured*" }}
+{{ end }}
+{{ if not (reflect.IsResource $resource) }}
+  {{ $image_params := partial "functions/get_page_image_params.html" . }}
+  {{ $filename := $image_params.filename | default "" }}
+  {{ $resource = (.Resources.ByType "image").GetMatch $filename }}
+  {{ if not (reflect.IsResource $resource) }}
+    {{ $resource = resources.GetMatch (path.Join "media" $filename) }}
+  {{ end }}
+{{ end }}
+{{ return $resource }}
