@@ -11,6 +11,11 @@ hugoblox:
     pack: athenaeum
   typography:
     pack: academic
+  verification:
+    google: zHWRwPkTNvaaHWEuOnzAqvuMe3-rc36jmUrRcx2PURg
+  analytics:
+    google:
+      measurement_id: G-D5ZF2TW141
   layout:
     radius: sm
     spacing: spacious
