@@ -1,0 +1,17 @@
+{{ if site.Params.hugoblox.analytics.google.measurement_id }}
+{{ $group := .Section | default "Information" }}
+{{ if .IsHome }}{{ $group = "Profile" }}
+{{ else if eq .Section "blog" }}
+  {{ $group = cond .IsPage (.Params.category | default "Uncategorized") "Blog index" }}
+{{ end }}
+<script id="analytics-page-context" type="application/json">{{ dict "content_group" $group "is_article" (and .IsPage (eq .Section "blog")) | jsonify | safeJS }}</script>
+<section class="analytics-notice" role="region" aria-labelledby="analytics-notice-title" hidden>
+  <h2 id="analytics-notice-title">방문 통계 설정</h2>
+  <p>Google Analytics로 인기 글과 유입 경로를 파악합니다. 허용하면 방문·기기·대략적인 지역과 글 읽기 통계를 수집합니다. <a href="{{ "privacy/" | relURL }}">자세히 보기</a></p>
+  <p data-analytics-choice-status></p>
+  <div class="analytics-choice">
+    <button type="button" data-analytics-choice="denied">허용 안 함</button>
+    <button type="button" data-analytics-choice="granted">통계 허용</button>
+  </div>
+</section>
+{{ end }}
