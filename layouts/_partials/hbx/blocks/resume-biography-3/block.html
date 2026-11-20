@@ -354,8 +354,8 @@
           {{ with $profile.bio }}{{ $bio_content = printf "%v" . | emojify | $page.RenderString }}{{ end }}
         {{ end }}
         {{ with $bio_content }}
-        <div class="mb-12">
-          <div class="flex items-center gap-4 mb-8">
+        <div class="ath-profile-section">
+          <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "identification" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
@@ -417,8 +417,8 @@
           {{ $education = $education_raw }}
         {{ end }}
         {{ if gt (len $education) 0 }}
-        <div id="education" class="mb-16">
-          <div class="flex items-center gap-4 mb-8">
+        <div id="education" class="ath-profile-section">
+          <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
@@ -451,7 +451,7 @@
             {{ if eq (printf "%T" $iconRaw) "string" }}
               {{ $icon = $iconRaw }}
             {{ end }}
-            <div class="group h-full flex flex-col bg-gradient-to-br from-white/90 to-primary-50/30 dark:from-gray-800/90 dark:to-primary-900/20 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary-200 dark:hover:border-primary-800 backdrop-blur-md">
+            <div class="ath-education-card group h-full flex flex-col bg-gradient-to-br from-white/90 to-primary-50/30 dark:from-gray-800/90 dark:to-primary-900/20 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary-200 dark:hover:border-primary-800 backdrop-blur-md">
               <div class="flex gap-4">
                 <div class="flex-shrink-0 w-12 h-12 bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 rounded-full flex items-center justify-center shadow-md">
                   {{ if $icon }}
@@ -498,8 +498,8 @@
           {{ $interests = slice $interests_raw }}
         {{ end }}
         {{ if gt (len $interests) 0 }}
-        <div id="interests">
-          <div class="flex items-center gap-4 mb-8">
+        <div id="interests" class="ath-profile-section">
+          <div class="ath-profile-heading">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "sparkles" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
@@ -513,7 +513,7 @@
             {{ end }}
             <h3 class="text-xl font-bold text-gray-900 dark:text-white tracking-tight">{{ $interests_heading | markdownify }}</h3>
           </div>
-          <div class="flex flex-wrap gap-3">
+          <div class="ath-interest-list flex flex-wrap gap-3">
             {{ range $interests }}
             {{ $interest := strings.TrimSpace (printf "%v" .) }}
             {{ if $interest }}
