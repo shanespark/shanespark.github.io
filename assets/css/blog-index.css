@@ -6,9 +6,7 @@
   --blogs-art-grid: #263b5510;
   --blogs-art-lines: #263b5560;
   --blogs-art-accent: #8b6b34;
-  max-width: 80rem;
-  margin-inline: auto;
-  padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 4rem;
+  padding: 1.5rem 0 4rem;
   font-size: 1rem;
   line-height: 1.6;
 }
