@@ -1,6 +1,8 @@
 ---
 title: ''
-summary: Shane Park’s academic homepage and AI security research notebook.
+summary: Shane Park (박상현), an AI safety researcher focused on Security for AI, Mechanistic Interpretability, and LLM agent security.
+seo:
+  title: 'Shane Park (박상현) | {brand}'
 type: landing
 sections:
 - block: resume-biography-3
