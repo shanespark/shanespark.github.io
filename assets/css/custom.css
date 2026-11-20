@@ -24,6 +24,25 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 .dark .publication-tab { color: #c6c9d1; }
 .dark .publication-tab[aria-selected="true"] { background: #d4b676; color: #0c1220; }
 .dark .publication-tab:focus-visible, .dark .publication-panel:focus-visible { outline-color: #d4b676; }
+/* Give the end of each page a calm, deliberate finish and room below the links. */
+.ath-footer { --footer-muted: #616873; --footer-border: #263b5526; margin-top: clamp(3rem, 6vw, 6rem); padding: 0 clamp(1.25rem, 4vw, 3rem) calc(clamp(3rem, 5vw, 5rem) + env(safe-area-inset-bottom, 0px)); }
+.dark .ath-footer { --footer-muted: #a1a9b8; --footer-border: #d4b67633; }
+.ath-footer-inner { max-width: 74rem; margin-inline: auto; padding-top: 2rem; border-top: 1px solid var(--footer-border); }
+.ath-footer-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; }
+.ath-footer-brand { display: inline-flex; align-items: center; gap: .65rem; color: inherit; font-family: var(--hb-font-heading, inherit); font-size: 1.25rem; font-weight: 600; text-decoration: none; }
+.ath-footer-brand img { flex-shrink: 0; border-radius: 3px; }
+.ath-footer-top { color: var(--footer-muted); font-size: .875rem; text-underline-offset: 4px; }
+.ath-footer-bottom { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem 2rem; margin-top: 1.5rem; color: var(--footer-muted); font-size: .875rem; line-height: 1.7; }
+.ath-footer-copyright { margin: 0; }
+.ath-footer-credit { display: block; margin-top: .25rem; font-size: .8125rem; }
+.ath-footer-credit a { color: inherit; text-underline-offset: 3px; }
+.ath-footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; }
+.ath-footer-links a, .ath-footer .analytics-footer-link { margin: 0; padding: .15rem 0; border: 0; background: transparent; color: inherit; font: inherit; text-decoration: none; cursor: pointer; }
+.ath-footer-links a:hover, .ath-footer .analytics-footer-link:hover, .ath-footer-top:hover { color: var(--hb-color-foreground, inherit); text-decoration: underline; text-underline-offset: 4px; }
+.ath-footer a:focus-visible, .ath-footer button:focus-visible { outline: 2px solid #9b783b; outline-offset: 5px; border-radius: 2px; }
+.dark .ath-footer a:focus-visible, .dark .ath-footer button:focus-visible { outline-color: #d4b676; }
+.ath-footer [hidden] { display: none; }
+@media (max-width: 40rem) { .ath-footer-inner { padding-top: 1.5rem; } .ath-footer-heading { gap: 1rem; } .ath-footer-brand { font-size: 1.125rem; } .ath-footer-bottom { flex-direction: column; gap: 1.25rem; } }
 pre { overflow-x: auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
