@@ -5,6 +5,23 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #site-header .navbar-brand { font-size: 22px; }
 #education .grid { grid-template-columns: minmax(0, 1fr); }
 #education .grid > div { max-width: 38rem; }
+.education-institution-row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1rem; flex-wrap: wrap; }
+.education-gpa { margin-left: auto; white-space: nowrap; }
+.publication-tabs { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+.publication-tabs-heading { text-align: center; font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; }
+.publication-tablist { display: flex; gap: .25rem; width: fit-content; margin: 0 auto 2rem; padding: .25rem; border: 1px solid #263b5526; border-radius: 999px; background: #263b5508; }
+.publication-tablist[hidden], .publication-panel[hidden] { display: none; }
+.publication-tab { border: 0; border-radius: 999px; padding: .65rem 1.1rem; color: #526071; background: transparent; font: inherit; cursor: pointer; }
+.publication-tab[aria-selected="true"] { background: #263b55; color: #fff; }
+.publication-tab:focus-visible, .publication-panel:focus-visible { outline: 2px solid #9b783b; outline-offset: 4px; }
+.publication-tab-count { margin-left: .45rem; font-size: .875rem; opacity: .8; }
+.publication-panel { font-size: 1rem; line-height: 1.8; }
+.publication-group-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+.publication-tabs[data-enhanced] .publication-group-title { display: none; }
+.dark .publication-tablist { border-color: #d4b67640; background: #d4b6760a; }
+.dark .publication-tab { color: #c6c9d1; }
+.dark .publication-tab[aria-selected="true"] { background: #d4b676; color: #0c1220; }
+.dark .publication-tab:focus-visible, .dark .publication-panel:focus-visible { outline-color: #d4b676; }
 pre { overflow-x: auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
