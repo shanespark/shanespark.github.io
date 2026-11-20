@@ -5,9 +5,9 @@ name:
   display: Shane Park
   given: Shane
   family: Park
-role: Undergraduate Student
-bio: 'I am an undergraduate student in Cyber Security at Ajou University. I am interested
-  in making AI systems more understandable, controllable, and secure, with a focus
+role: AI Safety Researcher
+bio: 'My research focuses on making AI systems more understandable, controllable,
+  and secure, with an emphasis
   on **Security for AI** and **mechanistic interpretability**.
 
 
@@ -18,8 +18,8 @@ bio: 'I am an undergraduate student in Cyber Security at Ajou University. I am i
 
   '
 affiliations:
-- name: Ajou University
-  url: https://www.ajou.ac.kr/en/
+- name: Seoul National University
+  url: https://en.snu.ac.kr/
 links:
 - icon: brands/github
   label: GitHub
@@ -28,6 +28,10 @@ links:
   label: LinkedIn
   url: https://www.linkedin.com/in/sanghyeon-park-81659b251/
 education:
+- degree: MS Electrical and Computer Engineering
+  institution: Seoul National University
+  start: '2027-03-02'
+  year: 2027-03-02 –
 - degree: BS Cyber Security
   institution: Ajou University
   start: '2021-03-02'
