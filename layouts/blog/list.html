@@ -2,6 +2,7 @@
 {{ $posts := .RegularPagesRecursive.ByDate.Reverse }}
 {{ $filters := slice
   (dict "label" "All" "id" "all")
+  (dict "label" "Foundations" "id" "foundations")
   (dict "label" "Interpretability/XAI" "id" "interpretability-xai")
   (dict "label" "Agent Security" "id" "agent-security")
   (dict "label" "Benchmark" "id" "benchmark")
