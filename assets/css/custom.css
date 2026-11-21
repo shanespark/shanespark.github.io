@@ -4,6 +4,24 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary, #education, #interests, #research, #publications { scroll-margin-top: 100px; }
 .ath-profile-shell, .publication-tabs, .ath-footer-inner, .blogs-index, #site-header .navbar { width: calc(100% - 2 * var(--ath-page-gutter)); max-width: var(--ath-page-width); margin-inline: auto; }
 #site-header .navbar { padding-inline: 0; }
+@media (width < 64rem) {
+  #site-header #nav-menu {
+    margin: .625rem 0 0;
+    padding: .25rem 0 0;
+    border-top: 1px solid color-mix(in srgb, var(--hb-color-header-fg) 16%, transparent);
+    text-align: start;
+  }
+
+  #site-header #nav-menu .nav-link {
+    display: flex;
+    align-items: center;
+    min-block-size: 2.75rem;
+    padding: .5rem 0;
+  }
+}
+@media (width >= 64rem) {
+  #site-header #nav-toggle:checked ~ #nav-menu { display: flex; }
+}
 #summary { padding-block: 0; }
 #summary .resume-biography { padding: var(--ath-section-space) 0; }
 .ath-profile-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
@@ -76,4 +94,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 pre { overflow-x: auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
+@media (width <= 22.5rem) {
+  #site-header .navbar-brand { font-size: 1rem; }
+  #site-header .navbar-brand img { width: 1.75rem; margin-right: .375rem; }
+  #site-header div:has(> .theme-toggle) { padding-inline: .375rem; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
