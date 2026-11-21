@@ -46,7 +46,7 @@ collections:
         label: 섹션
         widget: select
         required: false
-        options: [Interpretability/XAI, Agent Security, Benchmark]
+        options: [Foundations, Interpretability/XAI, Agent Security, Benchmark]
         hint: 블로그 상단 필터에 사용합니다. 비워두면 All에만 표시합니다.
       - name: keyword
         label: 메인 키워드
