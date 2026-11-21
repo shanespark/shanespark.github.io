@@ -41,7 +41,7 @@ collections:
         label: 메인 이미지
         widget: image
         required: false
-        hint: 카드 상단 이미지입니다. 가로 16:9를 권장하며, 비워두면 기본 그래픽을 표시합니다.
+        hint: 가로, 세로, 정사각형 이미지를 원본 비율 그대로 카드에 표시합니다. 비워두면 기본 그래픽을 표시합니다.
       - name: category
         label: 섹션
         widget: select
