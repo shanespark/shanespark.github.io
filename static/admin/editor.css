@@ -1,0 +1,5 @@
+/* Sveltia overlays the raw textarea with a clone that grows with its content. */
+[data-key-path="body"] .text-editor > .lexical-root,
+[data-key-path="body"] .text-editor > .text-area > :is(textarea, .clone) {
+  min-height: clamp(18rem, 55dvh, 40rem);
+}
