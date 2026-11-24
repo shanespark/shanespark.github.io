@@ -37,6 +37,21 @@ collections:
       - name: title
         label: 제목
         widget: string
+      - name: body
+        label: 본문
+        widget: markdown
+        modes: [rich_text, raw]
+        editor_components: [image, code-block, table]
+        default: |
+          ## 한 줄 요약
+
+          ## 배경과 핵심 아이디어
+
+          ## 실험과 결과
+
+          ## 한계와 내 생각
+
+          ## 참고 자료
       - name: card_image
         label: 메인 이미지
         widget: image
@@ -81,18 +96,3 @@ collections:
       - {name: authors, widget: hidden, default: [me]}
       - {name: math, widget: hidden, default: true}
       - {name: toc, widget: hidden, default: true}
-      - name: body
-        label: 본문
-        widget: markdown
-        modes: [rich_text, raw]
-        editor_components: [image, code-block, table]
-        default: |
-          ## 한 줄 요약
-
-          ## 배경과 핵심 아이디어
-
-          ## 실험과 결과
-
-          ## 한계와 내 생각
-
-          ## 참고 자료
