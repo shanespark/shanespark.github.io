@@ -21,16 +21,19 @@ CMS.registerEditorComponent({
     };
   },
 
-  toInline({ text = '강조할 글', before = '', after = '' }) {
-    return `${before}==${text}==${after}`;
+  async onEdit({ data }) {
+    return data.highlighted === false ? null : { ...data, highlighted: false };
   },
 
-  toPreview({ text = '', before = '', after = '' }) {
-    const preview = document.createElement('span');
-    const mark = document.createElement('mark');
-    mark.textContent = text;
-    preview.append(before, mark, after);
-    return preview;
+  toInline({ text = '강조할 글', before = '', after = '', highlighted = true }) {
+    const content = highlighted ? `==${text}==` : text;
+    return `${before}${content}${after}`;
+  },
+
+  toPreview({ text = '', before = '', after = '', highlighted = true }) {
+    // Sveltia parses and sanitizes string previews as Markdown.
+    const content = highlighted ? `<mark>${text}</mark>` : text;
+    return `${before}${content}${after}`;
   },
 });
 
