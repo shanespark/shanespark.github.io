@@ -30,3 +30,24 @@ toc: true
 그래서 연구자들은 이를 해결하기 위해 모델이 왜 그런 출력을 냈는지 마치 소프트웨어 역공학(reverse-engineering) 처럼 내부 연산을 거꾸로 들여다보기 시작했고, 인공지능에서는 이를 **기계적 해석 가능성(Mechanistic Interpretability)** 이라고 부르기 시작했다.
 
 이 연구는 처음 기계적 해석 가능성을 제안한 연구는 아니지만, Transformer이 만들어내는 결과의 패턴이나 구조를 찾아내고, 이를 기반으로 더 큰 모델을 이해하는데 활용하는 것을 목표로 한다.
+
+여기서 잠깐! 이때, 한 번쯤 보면 좋을 자료들을 적어놓고 가겠다.
+
+1. **GPT-3 : [2020, NeurIPS] Language Models are Few-Shot Learners** : GPT-3의 구체적인 하이퍼파라미터(Layer 수, Head 수)가 명시되어있다.
+2. **[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)** : Transformer 구조를 시각적으로 가장 잘 설명한 자료로 유명하다.
+3. **[LLM Visualization](https://bbycroft.net/llm)** : GPT 스타일의 모델 내부에서 행렬 연산이 어떻게 일어나는지 3D 인터랙티브 그래픽으로 볼 수 있는 시각화 도구이다.
+
+그래서 결국 이 논문의 가장 Main Insight는, **"복잡한 최신 모델들은 결국 내부적으로 Induction Heads와 같은 작은 회로들의 집합체일 것이다."** 라는 주장이다.
+
+이때, Induction Head란, 문맥에서 이전에 나온 토큰의 패턴을 찾아, 이어진 토큰을 현재 위치에서 예측하는 Attention Head이다.
+
+또한, 이 논문의 실험에서는 **Attention-only Transformer**라는 것을 사용한다. 이는 일반적인 Transformer에서 MLP 층을 제외하고 Attention 층을 둔 단순화된 모델을 의미한다. 일반적인 Transformer이 아닌, Attention-only Transformer를 사용하는 이유는, MLP를 제거하여 모델 내부에서 수행되는 연산을 주로 선형 변환과 Attention pattern으로 분석할 수 있어, 입력 토큰에서부터 출력 logit까지의 계산을 명확하게 분해할 수 있기 때문이다.
+
+# Summary of Results.
+
+이 논문에서는 Transformer의 내부 흐름을 분석하기 위해 작은 Transformer를 분석해 얻은 결과를 다음과 같이 정리하였다.
+
+1. **0-layer Transformer는 bigram을 따른다.**
+Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예측한다.
+2. 1-layer Attention-only Transformer는 bigram과 skip-trigram의 조합으로 볼 수 있다.
+Skip-trigram이란, 문맥에서 떨어져 있는 두 토큰과 다음 토큰 사이의 관계를 의미한다.
