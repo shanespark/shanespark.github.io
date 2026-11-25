@@ -41,9 +41,15 @@ toc: true
 
 이때, Induction Head란, 문맥에서 이전에 나온 토큰의 패턴을 찾아, 이어진 토큰을 현재 위치에서 예측하는 Attention Head이다.
 
-또한, 이 논문의 실험에서는 **Attention-only Transformer**라는 것을 사용한다. 이는 일반적인 Transformer에서 MLP 층을 제외하고 Attention 층을 둔 단순화된 모델을 의미한다. 일반적인 Transformer이 아닌, Attention-only Transformer를 사용하는 이유는, MLP를 제거하여 모델 내부에서 수행되는 연산을 주로 선형 변환과 Attention pattern으로 분석할 수 있어, 입력 토큰에서부터 출력 logit까지의 계산을 명확하게 분해할 수 있기 때문이다.
+또한, 이 논문의 실험에서는 ==**Attention-only Transformer**==라는 것을 사용한다. 이는 일반적인 Transformer에서 MLP 층을 제외하고 Attention 층을 둔 단순화된 모델을 의미한다. 일반적인 Transformer이 아닌, Attention-only Transformer를 사용하는 이유는, MLP를 제거하여 모델 내부에서 수행되는 연산을 주로 선형 변환과 Attention pattern으로 분석할 수 있어, 입력 토큰에서부터 출력 logit까지의 계산을 명확하게 분해할 수 있기 때문이다.
 
-# Summary of Results.
+## Summary of Results.
+
+논문의 길이가 상당히 방대하기 때문에, 우선적으로 결과의 요약을 제시한다.
+
+**Reverse Engineering Results**에서는 실험 결과 측면에서의 요약, 그리고 **Conceptual Take-Aways**에서는 개념적 측면에서의 요약을 제시한다.
+
+### Reverse Engineering Results.
 
 이 논문에서는 Transformer의 내부 흐름을 분석하기 위해 작은 Transformer를 분석해 얻은 결과를 다음과 같이 정리하였다.
 
@@ -52,4 +58,12 @@ Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예�
 2. **1-layer Attention-only Transformer는 bigram과 skip-trigram의 조합으로 볼 수 있다.**
 예를 들어 B 토큰 다음에 올 토큰 C를 예측하는 문제에서, 문맥에서 앞서 위치한 토큰 A를 참고한다는 것을 의미한다($A \ldots B \rightarrow C$).
 3. **2-layer Attention-only Transformer는 Attention Head들을 조합해 복잡한 알고리즘을 구현한다.**
-앞서 언급한 Induction Head는 앞서 나온 토큰 패턴을 찾아 뒤따랐던 토큰을 현재 위치에서 예측하는 방식으로 ==in-context learning==(모델이 가중치를 바꾸지 않고, 입력에 주어진 예시를 참고해 답하는 것)을 수행한다.
+앞서 언급한 Induction Head는 앞서 나온 토큰 패턴을 찾아 뒤따랐던 토큰을 현재 위치에서 예측하는 방식으로 **in-context learning**(모델이 가중치를 바꾸지 않고, 입력에 주어진 예시를 참고해 답하는 것)을 수행한다.
+4. **1-layer 와 2-layer 모델의 차이점은 in-context learning 방식의 질에 있다.**
+1-layer 모델은 주로 학습된 skip-trigram 관계에 의존하나, 2-layer 모델은 Induction Head를 통해 문맥 안의 반복 패턴을 찾아 활용하는 더 복잡한 추론 과정을 사용할 수 있다.
+
+### Conceptual Take-Aways.
+
+이 파트는 본문을 읽기 전에 핵심 개념과 저자들의 Transformer 분석 관점을 미리 파악하도록 한 파트이다.
+
+1. Attention head는 독립적으로 계산해 결과를 Residual Stream에 더하는 연산으로 해석할 수 있다.
