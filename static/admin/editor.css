@@ -7,3 +7,9 @@
 .blog-math-preview {
   overflow-x: auto;
 }
+
+/* Align inline equations to the text baseline in Sveltia's preview. */
+[data-rich-text-preview] .katex:has(> math:not([display="block"])),
+[data-rich-text-preview] .katex > math:not([display="block"]) {
+  vertical-align: baseline;
+}
