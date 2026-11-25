@@ -79,11 +79,6 @@ if (window.katex && window.marked) {
       },
     ],
   });
-
-  CMS.registerPreviewStyle('.blog-math-preview { overflow-x: auto; }', {
-    raw: true,
-    collection: 'blog',
-  });
 }
 
 CMS.init();
