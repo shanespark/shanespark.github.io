@@ -41,7 +41,7 @@ collections:
         label: 본문
         widget: markdown
         modes: [rich_text, raw]
-        editor_components: [image, code-block, table]
+        editor_components: [image, code-block, table, highlight-text]
         default: |
           ## 한 줄 요약
 
