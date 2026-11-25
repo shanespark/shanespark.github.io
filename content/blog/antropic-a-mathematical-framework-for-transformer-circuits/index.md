@@ -49,5 +49,5 @@ toc: true
 
 1. **0-layer Transformer는 bigram을 따른다.**
 Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예측한다.
-2. 1-layer Attention-only Transformer는 bigram과 skip-trigram의 조합으로 볼 수 있다.
-Skip-trigram이란, 문맥에서 떨어져 있는 두 토큰과 다음 토큰 사이의 관계를 의미한다.
+2. **1-layer Attention-only Transformer는 bigram과 skip-trigram의 조합으로 볼 수 있다.**
+예를 들어 B 토큰 다음에 올 토큰 C를 예측하는 문제에서, 문맥에서 앞서 위치한 토큰 A를 참고한다는 것을 의미한다($A ... B \rarrow C$).
