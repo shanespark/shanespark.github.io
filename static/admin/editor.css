@@ -13,3 +13,8 @@
 [data-rich-text-preview] .katex > math:not([display="block"]) {
   vertical-align: baseline;
 }
+
+[data-key-path="body"] mark {
+  background-color: light-dark(rgb(235 200 115 / 50%), rgb(163 117 52 / 50%));
+  color: inherit;
+}
