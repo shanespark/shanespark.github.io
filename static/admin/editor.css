@@ -3,3 +3,7 @@
 [data-key-path="body"] .text-editor > .text-area > :is(textarea, .clone) {
   min-height: clamp(18rem, 55dvh, 40rem);
 }
+
+.blog-math-preview {
+  overflow-x: auto;
+}
