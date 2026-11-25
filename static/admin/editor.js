@@ -34,4 +34,56 @@ CMS.registerEditorComponent({
   },
 });
 
+if (window.katex && window.marked) {
+  // Native MathML keeps the layout intact through Sveltia's preview sanitizer.
+  // Strip the TeX annotation before the sanitizer unwraps it into plain text.
+  const renderMath = (tex, displayMode = false) => window.katex.renderToString(tex, {
+    displayMode,
+    output: 'mathml',
+    throwOnError: false,
+    trust: false,
+    maxSize: 20,
+  }).replace(/<annotation\b[^>]*>[^<]*<\/annotation>/g, '');
+
+  window.marked.use({
+    extensions: [
+      {
+        name: 'blogMathBlock',
+        level: 'block',
+        tokenizer(source) {
+          const match = /^\$\$[ \t]*\r?\n([\s\S]+?)\r?\n\$\$[ \t]*(?:\r?\n|$)/.exec(source);
+          if (match?.[1].trim()) {
+            return { type: 'blogMathBlock', raw: match[0], tex: match[1].trim() };
+          }
+        },
+        renderer({ tex }) {
+          return `<div class="blog-math-preview">${renderMath(tex, true)}</div>\n`;
+        },
+      },
+      {
+        name: 'blogMathInline',
+        level: 'inline',
+        start(source) {
+          const index = source.search(/(?<![\\$])\$(?!\$)/);
+          return index < 0 ? undefined : index;
+        },
+        tokenizer(source) {
+          const match = /^\$(?!\$)((?:\\[^\r\n]|[^\\$`\r\n])+)\$(?![$\d])/.exec(source);
+          if (match?.[1].trim()) {
+            return { type: 'blogMathInline', raw: match[0], tex: match[1].trim() };
+          }
+        },
+        renderer({ tex }) {
+          return renderMath(tex);
+        },
+      },
+    ],
+  });
+
+  CMS.registerPreviewStyle('.blog-math-preview { overflow-x: auto; }', {
+    raw: true,
+    collection: 'blog',
+  });
+}
+
 CMS.init();
