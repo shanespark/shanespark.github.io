@@ -93,6 +93,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 }
 pre { overflow-x: auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
+.page-body .prose[data-pagefind-body] mark {
+  background-color: rgb(235 200 115 / 50%);
+  color: inherit;
+}
+.dark .page-body .prose[data-pagefind-body] mark {
+  background-color: rgb(163 117 52 / 50%);
+}
 @media (max-width: 640px) { #site-header .navbar-brand { font-size: 18px; } }
 @media (width <= 22.5rem) {
   #site-header .navbar-brand { font-size: 1rem; }
