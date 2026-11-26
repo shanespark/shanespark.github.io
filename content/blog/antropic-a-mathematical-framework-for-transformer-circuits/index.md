@@ -67,3 +67,5 @@ Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예�
 이 파트는 본문을 읽기 전에 핵심 개념과 저자들의 Transformer 분석 관점을 미리 파악하도록 한 파트이다.
 
 1. Attention head는 독립적으로 계산해 결과를 Residual Stream에 더하는 연산으로 해석할 수 있다.
+Attention head는 계산 효율성을 위해 "concatenate and multiply"라는 공식으로 설명되었지만, 이는 수학적으로 동일하다.
+2. Transformer
