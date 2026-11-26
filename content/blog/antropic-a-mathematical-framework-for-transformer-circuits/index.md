@@ -96,6 +96,29 @@ Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 
 
 핵심은 Transformer의 여러 구성요소는 Residual Stream이라는 것을 통해 정보를 주고받기 때문에, 그 흐름을 구성요소들 간의 통신 경로별로 나누어보면 모델의 작동을 더 쉽게 이해할 수 있다는 주장이다. 그리고 이 기본 원리는 지금의 frontier Transformer 기반 모델에도 적용된다.
 
-# Model Simplications
+## Model Simplications
 
-본 논문에서는 Transformer의 작동 원리를 분석하기 위해 의도적으로 Transformer의 구성을 단순하게 설정한다.
+본 논문에서는 Transformer의 작동 원리를 분석하기 위해 의도적으로 Transformer의 구성을 단순하게 설정하고, 이를 'Toy-Transformer'로서 활용한다.
+
+- 분석을 위해 MLP를 제거한 ==**'Attention-only' Transformer**==를 주로 살펴본다.
+- 이는 단순히 모델 크기를 줄인 것이 아니라, Attention 작동 방식을 집중적으로 분석하기 위한 선택이라 한다.
+- 또 다른 이유는, 당시 연구진이 MLP-layer의 작동 원리를 충분히 이해하지 못했기 때문이다.
+저자들은 이를 한계로 인정하며, Attention과 MLP가 함께 있는 실제 모델의 구성(회로)를 이해하는 일을 후속 과제로 남겼다.
+
+## High-Level Architecture
+
+![](high-level%20architecture.png)
+
+Transformer 자체의 단순화 이외에도 이 논문에서는 GPT를 비롯한 autoregressive 언어 모델에 초점을 맞춘다.
+
+Autoregressive라는 단어로 알려진 Decoder-only 모델은 token embedding($x_0 = W_E t$)으로 시작하여 **residual blocks**를 거친 뒤, token unembedding($T(t) = W_U x\_{-1}$)으로 마무리된다.
+
+그리고 **Residual block은 attention layer와 MLP layer로 구성**된다. Attention layer와 MLP layer는 모두 residual stream으로부터 입력을 **읽고(linear projection을 통해)**, 그 결과를 다시 linear projection하여 residual stream에 더함($x\_{i+2} = x\_{i+1} + m(x\_{i+1}$)으로써 **기록**한다. 
+
+개념적으로는 다음과 같이 볼 수 있다. :
+
+$$
+\text{next residual state} = \text{current residual state} + \text{output of layer}
+$$
+
+실제 Attention layer는 여러 attention head들이 병렬로 작동한다. 논문에서는 각 head를 서로 독립적으로 계산하고, 그 결과를 residual stream에 각각 더하는 것으로 설명한다($x\_{i+1} = x_i + \sum\_{h \in H_i} h(x_i)$). 이는 계산 효율을 위한 구현 방식과 수학적으로 동등하면서도 각 head의 역할을 따로 분석해내기 쉽다는 장점이 있다.
