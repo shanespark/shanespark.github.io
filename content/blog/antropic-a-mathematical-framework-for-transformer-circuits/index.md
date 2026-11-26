@@ -66,6 +66,14 @@ Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예�
 
 이 파트는 본문을 읽기 전에 핵심 개념과 저자들의 Transformer 분석 관점을 미리 파악하도록 한 파트이다.
 
-1. Attention head는 독립적으로 계산해 결과를 Residual Stream에 더하는 연산으로 해석할 수 있다.
+1. **Attention head는 독립적으로 계산해 결과를 Residual Stream에 더하는 연산으로 해석할 수 있다.**
 Attention head는 계산 효율성을 위해 "concatenate and multiply"라는 공식으로 설명되었지만, 이는 수학적으로 동일하다.
-2. Transformer
+2. **Residual Stream은 모델 구성 요소들이 정보를 주고받는 공간으로 해석할 수 있다.**
+각 요소가 서로 다른 부분공간(subspace)을 각 읽고 쓰기 때문에, Residual Stream 자체보다 그 안의 정보 전달 경로를 분석하는 것이 유용할 수 있다.
+3. **Transformer의 계산을 입력에서 출력까지 이어지는 경로(path)의 합으로 전개할 수 있다.**
+Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 자세한 수식은 본문에서 다룰 예정이다.
+4. **Attention head의 계산은 크게 두 회로로 나눠볼 수 있다.**
+\- **QK circuit** : 어떤 토큰에 얼마나 주의를 기울일지를 결정
+\- **OV circuit** : 주의를 기울인 토큰의 정보가 출력에 어떤 영향을 주는지 결정
+5. **여러 층의 Attention head는 서로 조합될 수 있고, 조합 방식에 따라 기능이 달라진다.**
+논문은 이를 $Q$(query), $K$(key), $V$(value) 측면의 조합으로 나눠 설명한다.
