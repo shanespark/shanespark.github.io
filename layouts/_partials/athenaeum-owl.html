@@ -1,0 +1,4 @@
+{{- $class := . -}}
+{{- with resources.Get "media/athenaeum-owl-chair.webp" -}}
+  <img class="{{ $class }}" src="{{ .RelPermalink }}" alt="" width="{{ .Width }}" height="{{ .Height }}" decoding="async">
+{{- end -}}
