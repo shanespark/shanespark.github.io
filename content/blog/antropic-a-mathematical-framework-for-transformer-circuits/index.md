@@ -77,3 +77,25 @@ Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 
 \- **OV circuit** : 주의를 기울인 토큰의 정보가 출력에 어떤 영향을 주는지 결정
 5. **여러 층의 Attention head는 서로 조합될 수 있고, 조합 방식에 따라 기능이 달라진다.**
 논문은 이를 $Q$(query), $K$(key), $V$(value) 측면의 조합으로 나눠 설명한다.
+
+\---
+
+==**그럼 지금부터 본문 파트 리뷰를 시작해보도록 하겠다.**==
+
+끝까지 쓸 수 있을지 걱정되는데, 하나하나 소중하게 써보고싶다!
+
+\---
+
+## Transformer Overview
+
+2017년 "Attention Is All You Need"라는 논문으로 시작하게 된 Transformer의 역사는 현재까지도 영향을 주고 있다.
+
+순환신경망(Recurrent Neural Network, RNN)의 한계를 극복한 Transformer 구조는 기술적으로 큰 발전을 가져왔지만, 무엇보다 중요한 것은 그 변화가 정확히 무엇을 의미하는지를 파악하는 것이다.
+
+이 논문은 이 Transformer를 정확하게 이해해보기 위해 역공학을 시도하는 ==**기계적 해석 가능성(Mechanistic Interpretability)**==이라는 분야를 제시한다. 그리고 이 절에서는 이 논문이 Transformer의  분석을 위해 사용할 하나의 관점을 서술한다.
+
+핵심은 Transformer의 여러 구성요소는 Residual Stream이라는 것을 통해 정보를 주고받기 때문에, 그 흐름을 구성요소들 간의 통신 경로별로 나누어보면 모델의 작동을 더 쉽게 이해할 수 있다는 주장이다. 그리고 이 기본 원리는 지금의 frontier Transformer 기반 모델에도 적용된다.
+
+# Model Simplications
+
+본 논문에서는 Transformer의 작동 원리를 분석하기 위해 의도적으로 Transformer의 구성을 단순하게 설정한다.
