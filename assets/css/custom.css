@@ -26,6 +26,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 #summary .resume-biography { padding: var(--ath-section-space) 0; }
 .ath-profile-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
 .ath-profile-sidebar { min-width: 0; }
+.ath-profile-owl {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(95px, 11vw, 140px);
+}
 .ath-profile-content { display: flex; flex-direction: column; gap: 3rem; min-width: 0; }
 .ath-profile-section { width: 100%; min-width: 0; margin: 0; }
 .ath-profile-content .prose, .ath-profile-content .bio-text { width: 100%; max-width: none; }
