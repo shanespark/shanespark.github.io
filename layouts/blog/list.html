@@ -9,10 +9,7 @@
 }}
 <main class="blogs-index" id="blogs-index">
   <header class="blogs-heading">
-    <div class="blogs-heading-title">
-      <h1>{{ .Title }}</h1>
-      {{ partial "athenaeum-owl.html" "blogs-owl" }}
-    </div>
+    <h1>{{ .Title }}</h1>
     <a class="blogs-write" href="{{ "admin/" | relURL }}">글쓰기 · 글 관리</a>
   </header>
 
