@@ -111,9 +111,9 @@ Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 
 
 Transformer 자체의 단순화 이외에도 이 논문에서는 GPT를 비롯한 autoregressive 언어 모델에 초점을 맞춘다.
 
-Autoregressive라는 단어로 알려진 Decoder-only 모델은 token embedding($x_0 = W_E t$)으로 시작하여 **residual blocks**를 거친 뒤, token unembedding($T(t) = W_U x\_{-1}$)으로 마무리된다.
+Autoregressive라는 단어로 알려진 Decoder-only 모델은 token embedding($x_0 = W_E t$)으로 시작하여 **residual blocks**를 거친 뒤, token unembedding($T(t) = W_U x_{-1}$)으로 마무리된다.
 
-그리고 **Residual block은 attention layer와 MLP layer로 구성**된다. Attention layer와 MLP layer는 모두 residual stream으로부터 입력을 **읽고(linear projection을 통해)**, 그 결과를 다시 linear projection하여 residual stream에 더함($x\_{i+2} = x\_{i+1} + m(x\_{i+1}$)으로써 **기록**한다. 
+그리고 **Residual block은 attention layer와 MLP layer로 구성**된다. Attention layer와 MLP layer는 모두 residual stream으로부터 입력을 **읽고(linear projection을 통해)**, 그 결과를 다시 linear projection하여 residual stream에 더함($x_{i+2} = x_{i+1} + m(x_{i+1})$)으로써 **기록**한다.
 
 개념적으로는 다음과 같이 볼 수 있다. :
 
@@ -121,4 +121,4 @@ $$
 \text{next residual state} = \text{current residual state} + \text{output of layer}
 $$
 
-실제 Attention layer는 여러 attention head들이 병렬로 작동한다. 논문에서는 각 head를 서로 독립적으로 계산하고, 그 결과를 residual stream에 각각 더하는 것으로 설명한다($x\_{i+1} = x_i + \sum\_{h \in H_i} h(x_i)$). 이는 계산 효율을 위한 구현 방식과 수학적으로 동등하면서도 각 head의 역할을 따로 분석해내기 쉽다는 장점이 있다.
+실제 Attention layer는 여러 attention head들이 병렬로 작동한다. 논문에서는 각 head를 서로 독립적으로 계산하고, 그 결과를 residual stream에 각각 더하는 것으로 설명한다($x_{i+1} = x_i + \sum_{h \in H_i} h(x_i)$). 이는 계산 효율을 위한 구현 방식과 수학적으로 동등하면서도 각 head의 역할을 따로 분석해내기 쉽다는 장점이 있다.
