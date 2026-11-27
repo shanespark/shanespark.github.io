@@ -43,13 +43,13 @@ toc: true
 
 또한, 이 논문의 실험에서는 ==**Attention-only Transformer**==라는 것을 사용한다. 이는 일반적인 Transformer에서 MLP 층을 제외하고 Attention 층을 둔 단순화된 모델을 의미한다. 일반적인 Transformer이 아닌, Attention-only Transformer를 사용하는 이유는, MLP를 제거하여 모델 내부에서 수행되는 연산을 주로 선형 변환과 Attention pattern으로 분석할 수 있어, 입력 토큰에서부터 출력 logit까지의 계산을 명확하게 분해할 수 있기 때문이다.
 
-## Summary of Results.
+# Summary of Results.
 
 논문의 길이가 상당히 방대하기 때문에, 우선적으로 결과의 요약을 제시한다.
 
 **Reverse Engineering Results**에서는 실험 결과 측면에서의 요약, 그리고 **Conceptual Take-Aways**에서는 개념적 측면에서의 요약을 제시한다.
 
-### Reverse Engineering Results.
+## Reverse Engineering Results.
 
 이 논문에서는 Transformer의 내부 흐름을 분석하기 위해 작은 Transformer를 분석해 얻은 결과를 다음과 같이 정리하였다.
 
@@ -62,7 +62,7 @@ Attention 층이 없는 모델은 현재 토큰만 보고 다음 토큰을 예�
 4. **1-layer 와 2-layer 모델의 차이점은 in-context learning 방식의 질에 있다.**
 1-layer 모델은 주로 학습된 skip-trigram 관계에 의존하나, 2-layer 모델은 Induction Head를 통해 문맥 안의 반복 패턴을 찾아 활용하는 더 복잡한 추론 과정을 사용할 수 있다.
 
-### Conceptual Take-Aways.
+## Conceptual Take-Aways.
 
 이 파트는 본문을 읽기 전에 핵심 개념과 저자들의 Transformer 분석 관점을 미리 파악하도록 한 파트이다.
 
@@ -86,7 +86,7 @@ Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 
 
 \---
 
-## Transformer Overview
+# Transformer Overview
 
 2017년 "Attention Is All You Need"라는 논문으로 시작하게 된 Transformer의 역사는 현재까지도 영향을 주고 있다.
 
@@ -111,14 +111,18 @@ Attention pattern을 고정하면 각 경로는 선형으로 다룰 수 있다. 
 
 Transformer 자체의 단순화 이외에도 이 논문에서는 GPT를 비롯한 autoregressive 언어 모델에 초점을 맞춘다.
 
-Autoregressive라는 단어로 알려진 Decoder-only 모델은 token embedding($x_0 = W_E t$)으로 시작하여 **residual blocks**를 거친 뒤, token unembedding($T(t) = W_U x_{-1}$)으로 마무리된다.
+Autoregressive라는 단어로 알려진 Decoder-only 모델은 token embedding($x_0 = W_E t$)으로 시작하여 **residual blocks**를 거친 뒤, token unembedding($T(t) = W_U x\_{-1}$)으로 마무리된다.
 
-그리고 **Residual block은 attention layer와 MLP layer로 구성**된다. Attention layer와 MLP layer는 모두 residual stream으로부터 입력을 **읽고(linear projection을 통해)**, 그 결과를 다시 linear projection하여 residual stream에 더함($x_{i+2} = x_{i+1} + m(x_{i+1})$)으로써 **기록**한다.
+그리고 **Residual block은 attention layer와 MLP layer로 구성**된다. Attention layer와 MLP layer는 모두 residual stream으로부터 입력을 **읽고(linear projection을 통해)**, 그 결과를 다시 linear projection하여 residual stream에 더함($x\_{i+2} = x\_{i+1} + m(x\_{i+1})$)으로써 **기록**한다.
 
 개념적으로는 다음과 같이 볼 수 있다. :
 
 $$
-\text{next residual state} = \text{current residual state} + \text{output of layer}
+\text{next residual stream} = \text{current residual stream} + \text{output of layer}
 $$
 
-실제 Attention layer는 여러 attention head들이 병렬로 작동한다. 논문에서는 각 head를 서로 독립적으로 계산하고, 그 결과를 residual stream에 각각 더하는 것으로 설명한다($x_{i+1} = x_i + \sum_{h \in H_i} h(x_i)$). 이는 계산 효율을 위한 구현 방식과 수학적으로 동등하면서도 각 head의 역할을 따로 분석해내기 쉽다는 장점이 있다.
+실제 Attention layer는 여러 attention head들이 병렬로 작동한다. 논문에서는 각 head를 서로 독립적으로 계산하고, 그 결과를 residual stream에 각각 더하는 것으로 설명한다($x\_{i+1} = x_i + \sum\_{h \in H_i} h(x_i)$). 이는 계산 효율을 위한 구현 방식과 수학적으로 동등하면서도 각 head의 역할을 따로 분석해내기 쉽다는 장점이 있다.
+
+Token unembedding은 마지막 residual stream를 토큰별 점수인 logits로 변환한다. 이 점수는 다음에 어떤 토큰이 나올지 예측하는 데 사용된다.
+
+## Virtual Weights and the Residual Stream as a Communication Channel
